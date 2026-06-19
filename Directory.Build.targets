@@ -1,0 +1,13 @@
+<Project>
+	<!-- PMCR-O Phoenix Build Hooks -->
+	<Target Name="PMCRoPostBuild" AfterTargets="Build">
+		<Message Text="=== PMCR-O Reconstruction 5.0: Substrate is now IMMUTABLE ===" Importance="high" />
+		<Message Text="=== Trails + DevUI hooks ready for execution ===" Importance="high" />
+	</Target>
+
+	<!-- Colony Law Validation Placeholder -->
+	<Target Name="ValidateColonyLaws" BeforeTargets="Build">
+		<!-- This space is reserved for automated checks of SKILL.md schema 2.0 -->
+		<Message Text="PMCRO Law Check: Verifying GTDDD Identity tokens..." Importance="normal" />
+	</Target>
+</Project>

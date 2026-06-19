@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+// C# Namespace alignment for .NET 10 MAF projects
+option csharp_namespace = "ProjectName.OrchestratorService";
+
+package pmcro.v1;
+
+// The central service governing the cognitive loop transitions
+service PmcroOrchestrator {
+  // Unary call for single-turn agent interaction
+  rpc Invoke            (AgentRequest)  returns (AgentResponse);
+  
+  // Server-streaming call for real-time token deltas in DevUI
+  rpc InvokeStreaming   (AgentRequest)  returns (stream AgentChunk);
+  
+  // The primary entry point for a full P-M-C-R loop sequence
+  rpc RunCycle          (CycleRequest)  returns (CycleResponse);
+}
+
+// Data payload for single agent reasoning
+message AgentRequest {
+  string agent_name = 1;
+  string message    = 2;
+  string thread_id  = 3;
+  map<string, string> metadata = 4;
+}
+
+// Final response from a single agent turn
+message AgentResponse {
+  string agent_name = 1;
+  string text       = 2;
+  TokenUsage usage  = 3;
+}
+
+// Incremental token chunk for streaming interfaces
+message AgentChunk {
+  string agent_name = 1;
+  string delta      = 2;
+  bool   is_final   = 3;
+}
+
+// Observability metrics for O-Mode Optimization
+message TokenUsage {
+  int32 prompt_tokens     = 1;
+  int32 completion_tokens = 2;
+  int32 total_tokens      = 3;
+}
+
+// Request parameters for a multi-phase PMCR-O cycle
+message CycleRequest {
+  string seed_intent   = 1; // The high-level goal
+  string cycle_id      = 2; // Unique identifier for the trail
+  string hil_token     = 3; // MAAI-001 Authorization token (if required)
+  string project       = 4; // Project context anchor
+  string subject_agent = 5; // The domain specialist to activate
+}
+
+// Final disposition returned after the Reflector phase
+message CycleResponse {
+  string cycle_id = 1;
+  string status   = 2; // ACCEPT | RETRY | HALT
+  string output   = 3; // The final generated artifact or summary
+}

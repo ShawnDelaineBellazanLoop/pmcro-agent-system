@@ -1,0 +1,139 @@
+# ============================================================
+# PMCR-O COLONY SKILL REGISTRY
+# Colony:   {{colony_name}}
+# Schema:   2.0
+# Version:  5.0.0
+# Sealed:   2026-06-19
+# Sealed by: skill-maker-agent (REGISTRY-SEAL law)
+# ============================================================
+# REGISTRY-SEAL LAW: An agent is NOT active in the Colony until
+# it appears in this file. Provisioning is incomplete without
+# a registry entry. orchestrator-agent resolves subject agents
+# ONLY from this physical file — never from inference.
+# ============================================================
+
+manifest_version: "5.3.0"
+colony_version: "5.0.0"
+maf_version: "1.10.0"
+sealed_date: "2026-06-19"
+
+load_order:
+  # ── PHASE agents (PMCR-O loop backbone) ────────────────────────────────────
+  - name: "orchestrator-agent"
+    path: "skills/orchestrator-agent/SKILL.md"
+    agent_type: "PHASE"
+    tier: "ORCHESTRATION"
+    capability_class: "LOOP_CONTROLLER"
+    triangle_role: "ORCHESTRATION"
+    status: "ACTIVE"
+    sealed: true
+
+  - name: "planner-agent"
+    path: "skills/planner-agent/SKILL.md"
+    agent_type: "PHASE"
+    tier: "ORCHESTRATION"
+    capability_class: "STRATEGY_GENERATION"
+    triangle_role: "ORCHESTRATION"
+    status: "ACTIVE"
+    sealed: true
+
+  - name: "maker-agent"
+    path: "skills/maker-agent/SKILL.md"
+    agent_type: "PHASE"
+    tier: "EXECUTION"
+    capability_class: "EXECUTION_ENGINE"
+    triangle_role: "EXECUTION"
+    status: "ACTIVE"
+    sealed: true
+
+  - name: "checker-agent"
+    path: "skills/checker-agent/SKILL.md"
+    agent_type: "PHASE"
+    tier: "EXECUTION"
+    capability_class: "VALIDATION_GATE"
+    triangle_role: "EXECUTION"
+    status: "ACTIVE"
+    sealed: true
+
+  - name: "reflector-agent"
+    path: "skills/reflector-agent/SKILL.md"
+    agent_type: "PHASE"
+    tier: "ORCHESTRATION"
+    capability_class: "TERMINAL_ARBITRATION"
+    triangle_role: "ORCHESTRATION"
+    status: "ACTIVE"
+    sealed: true
+
+  # ── SUBJECT agents (domain specialists dispatched by orchestrator) ──────────
+  - name: "filesystem-agent"
+    path: "skills/filesystem-agent/SKILL.md"
+    agent_type: "SUBJECT"
+    tier: "EXECUTION"
+    capability_class: "FILESYSTEM_DOMAIN"
+    triangle_role: "EXECUTION"
+    status: "ACTIVE"
+    sealed: true
+
+  - name: "git-agent"
+    path: "skills/git-agent/SKILL.md"
+    agent_type: "SUBJECT"
+    tier: "EXECUTION"
+    capability_class: "VERSION_CONTROL_DOMAIN"
+    triangle_role: "EXECUTION"
+    status: "ACTIVE"
+    sealed: true
+
+  - name: "devops-agent"
+    path: "skills/devops-agent/SKILL.md"
+    agent_type: "EXECUTION"
+    tier: "EXECUTION"
+    capability_class: "BUILD_AUTOMATION"
+    triangle_role: "EXECUTION"
+    status: "ACTIVE"
+    sealed: true
+
+  - name: "playwright-agent"
+    path: "skills/playwright-agent/SKILL.md"
+    agent_type: "EXECUTION"
+    tier: "EXECUTION"
+    capability_class: "BROWSER_AUTOMATION"
+    triangle_role: "EXECUTION"
+    status: "ACTIVE"
+    sealed: true
+
+  - name: "jira-agent"
+    path: "skills/jira-agent/SKILL.md"
+    agent_type: "EXECUTION"
+    tier: "EXECUTION"
+    capability_class: "PROJECT_MANAGEMENT"
+    triangle_role: "EXECUTION"
+    status: "ACTIVE"
+    sealed: true
+
+  - name: "docfx-agent"
+    path: "skills/docfx-agent/SKILL.md"
+    agent_type: "SUBJECT"
+    tier: "EXECUTION"
+    capability_class: "DOCUMENTATION_ENGINEERING"
+    triangle_role: "EXECUTION"
+    status: "ACTIVE"
+    sealed: true
+
+  # ── SUPPORT agents (meta-Colony infrastructure) ─────────────────────────────
+  - name: "skill-maker-agent"
+    path: "skills/skill-maker-agent/SKILL.md"
+    agent_type: "SUPPORT"
+    tier: "ORCHESTRATION"
+    capability_class: "RECURSIVE_PROVISIONER"
+    triangle_role: "ORCHESTRATION"
+    status: "ACTIVE"
+    sealed: true
+
+# ── Registry statistics ────────────────────────────────────────────────────────
+stats:
+  total_agents: 12
+  phase_agents: 5       # orchestrator, planner, maker, checker, reflector
+  subject_agents: 4     # filesystem, git, docfx, (devops+playwright+jira are EXECUTION type)
+  support_agents: 1     # skill-maker
+  execution_agents: 3   # devops, playwright, jira
+  all_sealed: true

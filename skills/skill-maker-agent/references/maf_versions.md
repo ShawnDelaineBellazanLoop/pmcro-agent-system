@@ -21,14 +21,14 @@ Microsoft shipped on April 3, 2026 as a GA 1.0 production release — the unifie
 | NuGet Package | Version | Target | Notes |
 |:--------------|:--------|:-------|:------|
 | `Microsoft.Agents.AI` | **1.7.0** | net8.0 / netstandard2.0 / net472 | Core framework — always include |
-| `Microsoft.Agents.AI.Hosting` | **1.7.0** | net8.0 | ASP.NET Core hosting |
+| `Microsoft.Agents.AI.Hosting` | **1.10.0-preview.260610.1** | net8.0 | ASP.NET Core hosting — preview track, parallel to DevUI |
 | `Microsoft.Agents.AI.Workflows` | **1.7.0** | net8.0 | Graph-based multi-agent workflows |
 | `Microsoft.Agents.AI.Hosting.A2A` | **1.8.0-preview.260528.1** | net8.0 | A2A protocol — preview only |
 | `Microsoft.Agents.AI.DurableTask` | **1.0.0-preview** | net8.0 | Durable stateful agents — preview only |
 | `Microsoft.Agents.AI.OpenAI` | **1.0.0-preview.260128.1** | net8.0 | OpenAI provider |
-| `Microsoft.Agents.AI.DevUI` | **1.7.0** | net8.0 | Local developer debugging UI |
+| `Microsoft.Agents.AI.DevUI` | **1.10.0-preview.260610.1** | net8.0 | Local developer debugging UI — preview track, parallel to core |
 
-> **Rule:** Use `1.7.0` stable for all production Colony agent packages. Only use `1.8.0-preview.*` for explicit A2A hosting scenarios.
+> **Rule:** Use `1.7.0` stable for core Colony agent packages. Use `1.10.0-preview.260610.1` for `Microsoft.Agents.AI.Hosting` and `Microsoft.Agents.AI.DevUI` (required for `builder.AddAIAgent()` / `builder.AddDevUI()` / `devUI.WithAgentService()` host-builder APIs). Only use `1.8.0-preview.*` for explicit A2A hosting scenarios.
 
 ---
 
@@ -185,16 +185,16 @@ Frame types per agent:
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- MAF Core -->
+      <!-- MAF Core -->
     <PackageReference Include="Microsoft.Agents.AI"          Version="1.7.0" />
-    <PackageReference Include="Microsoft.Agents.AI.Hosting"  Version="1.7.0" />
+    <PackageReference Include="Microsoft.Agents.AI.Hosting"  Version="1.10.0-preview.260610.1" />
     <PackageReference Include="Microsoft.Agents.AI.Workflows" Version="1.7.0" />
 
     <!-- Provider (pick one) -->
     <PackageReference Include="Microsoft.Agents.AI.OpenAI"   Version="1.7.0" />
 
     <!-- Optional: Dev UI for local debugging -->
-    <PackageReference Include="Microsoft.Agents.AI.DevUI"    Version="1.7.0" />
+    <PackageReference Include="Microsoft.Agents.AI.DevUI"    Version="1.10.0-preview.260610.1" />
   </ItemGroup>
 </Project>
 ```

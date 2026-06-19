@@ -1,15 +1,22 @@
-<Project Sdk="Aspire.AppHost.Sdk/13.2.4">
+<Project Sdk="Aspire.AppHost.Sdk/13.4.5">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <UserSecretsId>7caa6e77-0c08-497c-b248-16e416a34a18</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MessagePack" Version="3.1.7" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Aspire.Hosting.AppHost" />
+		<PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama" />
+		<PackageReference Include="Aspire.Hosting.AgentFramework.DevUI" />
+		<PackageReference Include="MessagePack" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\services\ProjectName.OrchestratorService\ProjectName.OrchestratorService.csproj" />
+		<ProjectReference Include="..\ProjectName.OrchestratorApi\ProjectName.OrchestratorApi.csproj" />
+	</ItemGroup>
 
 </Project>

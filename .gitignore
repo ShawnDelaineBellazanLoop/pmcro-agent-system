@@ -1,21 +1,36 @@
-# OS/System
-$RECYCLE.BIN/
-System Volume Information/
-Thumbs.db
-.DS_Store
-
-# Visual Studio / .NET
-.vs/
+# .NET 10 / Visual Studio
 bin/
 obj/
 *.user
 *.suo
 *.sln.docstates
+.vs/
+.devcontainer/
 
-# PMCR-O Artifacts
-backups/
-logs/
-*.zip
+# Aspire / Containers
+.aspire/
+.docker/
 
+# PMCR-O Runtime (Generated Data)
+# Note: We track the folder structure but usually ignore the physical trails 
+# if they contain sensitive data. For now, we will track them for reconstruction.
+#!.pmcro/trails/
+
+# DocFX build output (generated, never commit)
 docs/_site/
-_site/
+
+# PMCR-O runtime data (trails, constraints — machine-local)
+.pmcro/trails/
+.pmcro/constraints/
+.pmcro/screenshots/
+.pmcro/properties/
+
+# Backups (local recovery only)
+backups/
+
+# OS / Tools
+.DS_Store
+Thumbs.db
+node_modules/
+.venv/
+.python_history

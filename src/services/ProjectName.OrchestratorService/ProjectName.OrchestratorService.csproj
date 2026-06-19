@@ -1,19 +1,48 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<RootNamespace>ProjectName.OrchestratorService</RootNamespace>
+		<!-- Suppress experimental and evaluation warnings -->
+		<NoWarn>$(NoWarn);EXTEXP0001;MAAI001;MAAI002</NoWarn>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..\..</DockerfileContext>
-  </PropertyGroup>
+	<ItemGroup>
+		<Protobuf Include="Protos\pmcro.proto" GrpcServices="Server" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-  </ItemGroup>
+	<ItemGroup>
+		<!-- gRPC & Infrastructure -->
+		<PackageReference Include="Grpc.AspNetCore" />
+		<PackageReference Include="Grpc.AspNetCore.Server.Reflection" />
 
-  <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.64.0" />
-  </ItemGroup>
+		<!-- Microsoft Agent Framework (MAF) 1.10.0 -->
+		<PackageReference Include="Microsoft.Agents.AI" />
+		<PackageReference Include="Microsoft.Agents.AI.Abstractions" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Agents.AI.Workflows" />
+		<PackageReference Include="Microsoft.Agents.AI.Hosting" />
+		<PackageReference Include="Microsoft.Agents.AI.DevUI" />
 
+		<!-- AI / LLM / Ollama -->
+		<PackageReference Include="Microsoft.Extensions.AI" />
+		<PackageReference Include="Microsoft.Extensions.AI.Abstractions" />
+		<PackageReference Include="OllamaSharp" />
+
+		<!-- Explicit Extensions (Ensures CS1061 resolution) -->
+		<PackageReference Include="Microsoft.Extensions.Options" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\ProjectName.ServiceDefaults\ProjectName.ServiceDefaults.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="..\..\..\skills\**\SKILL.md" Link="EmbeddedSkills\%(RecursiveDir)SKILL.md" />
+		<EmbeddedResource Include="..\..\..\skills\**\domain_config.json" Link="EmbeddedSkills\%(RecursiveDir)domain_config.json" />
+		<EmbeddedResource Include="..\..\..\skills\**\prompts\*.prompt.md" Link="EmbeddedSkills\%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
 </Project>

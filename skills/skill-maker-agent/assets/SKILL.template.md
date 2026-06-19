@@ -22,7 +22,7 @@ identity:
   colony: "{{colony_name}}"
 
 maf:
-  version: "1.10.0"
+  version: "{{maf_version}}"
   triangle_role: "{{triangle_role}}"    # INTERPRETATION | ORCHESTRATION | EXECUTION
   kernel_plugin: "{{kernel_plugin}}"
   kernel_function: "{{kernel_function}}"
@@ -45,7 +45,7 @@ laws:
 
 versioning:
   skill_version: "{{skill_version}}"
-  maf_version: "1.10.0"
+  maf_version: "{{maf_version}}"
   colony_version: "{{colony_version}}"
   changelog: "meta/changelog.md"
 ---

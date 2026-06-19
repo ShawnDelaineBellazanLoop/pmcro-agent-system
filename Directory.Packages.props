@@ -1,0 +1,51 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- ── Aspire & Infrastructure ────────────────────────────────────────── -->
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.4.5" />
+    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.Ollama" Version="13.4.0" />
+    <PackageVersion Include="Aspire.Hosting.AgentFramework.DevUI" Version="1.10.0-preview.260610.1" />
+    <!-- 🆕 Security Fix: MessagePack 3.1.2 -->
+    <PackageVersion Include="MessagePack" Version="3.1.7" />
+    <!-- ── Microsoft Agent Framework (MAF) 1.10.0 ────────────────────────── -->
+    <PackageVersion Include="Microsoft.Agents.AI" Version="1.10.0" />
+    <PackageVersion Include="Microsoft.Agents.AI.Workflows" Version="1.10.0" />
+    <PackageVersion Include="Microsoft.Agents.AI.Abstractions" Version="1.10.0" />
+    <PackageVersion Include="Microsoft.Agents.AI.OpenAI" Version="1.10.0" />
+    <PackageVersion Include="Microsoft.Agents.AI.Hosting" Version="1.10.0-preview.260610.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.DevUI" Version="1.10.0-preview.260610.1" />
+    <!-- ── AI Ecosystem ───────────────────────────────────────────────────── -->
+    <PackageVersion Include="Microsoft.Extensions.AI" Version="10.7.0" />
+    <PackageVersion Include="Microsoft.Extensions.AI.Abstractions" Version="10.7.0" />
+    <PackageVersion Include="OllamaSharp" Version="5.4.25" />
+    <!-- ── Aligned Microsoft Extensions (Stable Floor) ────────────────────── -->
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.1.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.1.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.9" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.9" />
+    <!-- ── gRPC / Protobuf ────────────────────────────────────────────────── -->
+    <PackageVersion Include="Grpc.AspNetCore" Version="2.80.0" />
+    <PackageVersion Include="Grpc.AspNetCore.Server.Reflection" Version="2.80.0" />
+    <PackageVersion Include="Grpc.Net.Client" Version="2.80.0" />
+    <PackageVersion Include="Grpc.Tools" Version="2.82.0-pre1" />
+    <PackageVersion Include="Google.Protobuf" Version="3.35.1" />
+    <!-- ── OpenAPI / Scalar ───────────────────────────────────────────────── -->
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.9" />
+    <PackageVersion Include="Asp.Versioning.Mvc" Version="10.0.0" />
+    <PackageVersion Include="Asp.Versioning.Mvc.ApiExplorer" Version="10.0.0" />
+    <PackageVersion Include="Asp.Versioning.OpenApi" Version="10.0.0-rc.1" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.16.4" />
+    <PackageVersion Include="Scalar.AspNetCore.Microsoft" Version="2.16.4" />
+    <!-- ── OpenTelemetry ──────────────────────────────────────────────────── -->
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.16.0" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.16.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.2" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.1" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.1" />
+  </ItemGroup>
+</Project>

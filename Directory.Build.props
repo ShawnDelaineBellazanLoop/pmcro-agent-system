@@ -1,0 +1,23 @@
+<Project>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		
+		<!-- Reconstruction Versioning -->
+		<Version>5.0.0</Version>
+		<Authors>Tooensure LLC</Authors>
+		<Company>Tooensure LLC</Company>
+		<Product>PMCR-O Phoenix Agent System</Product>
+		<Description>Production-grade multi-agent cognitive architecture on .NET 10 and Aspire.</Description>
+
+		<!-- Central Package Management (CPM) -->
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+		<CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+	</PropertyGroup>
+
+	<!-- Centralized Warning Suppression for MAF 1.10.0-preview -->
+	<PropertyGroup>
+		<NoWarn>$(NoWarn);EXTEXP0001;MAAI001;MAAI002;NU1510</NoWarn>
+	</PropertyGroup>
+</Project>
