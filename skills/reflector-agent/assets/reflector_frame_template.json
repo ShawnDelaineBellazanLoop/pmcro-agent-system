@@ -1,0 +1,15 @@
+{
+  "cycle_id": "CycleQ-{{timestamp}}",
+  "loop": 1,
+  "o_mode": "OUTPUT",
+  "cycle_disposition": "COMPLETE",
+  "retry_context": {
+    "failed_steps": [],
+    "checks_failed": [],
+    "guidance": null
+  },
+  "trail_complete": true,
+  "otel_trace_present": true,
+  "notes": [ "Audit trail verified. Loop closed within budget." ],
+  "cycle_id_self": "CycleQ-REFLECTOR-{{hex8}}"
+}

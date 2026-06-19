@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "framework_version": "4.6.0",
+  "identity_profile": {
+    "company": "{{company}}",
+    "owner": "{{owner}}",
+    "domain": "{{domain}}",
+    "mission": "{{mission}}",
+    "voice_and_tone": "{{voice}}",
+    "revenue_model": "{{revenue_model}}",
+    "legal_license": "{{license}}",
+    "deployment_date": "{{date}}"
+  },
+  "system_defaults": {
+    "max_loops": 3,
+    "thoughtlock_threshold": "MEDIUM",
+    "audit_trail_enabled": true,
+    "local_first_policy": "OLLAMA_LOCAL"
+  },
+  "metadata": {
+    "author": "Tooensure LLC",
+    "design_pattern": "GTDDD",
+    "colony_id": "PMCRO-{{hex8}}"
+  }
+}

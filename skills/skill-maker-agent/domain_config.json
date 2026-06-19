@@ -1,0 +1,96 @@
+{
+  "agent": "skill-maker-agent",
+  "version": "1.0.0",
+  "capability_class": "RECURSIVE_PROVISIONER",
+  "maf": {
+    "tier": "SUPPORT",
+    "triangle_role": "ORCHESTRATION",
+    "kernel_plugin": "SkillMakerKernel",
+    "kernel_function": "ProvisionSkillPackage"
+  },
+  "colony_laws": {
+    "EC-SYS-001": "Atomic Content Protocol — entire files only, no snippets",
+    "EC-SYS-002": "Minimalist Planning — one file per PMCR-O cycle",
+    "GTDDD-MANDATE": "No hardcoded company data — use {{tokens}} exclusively",
+    "MAF-NATIVE": "Enforce 6-directory package hierarchy for every new agent"
+  },
+  "actions": [
+    {
+      "id": "mk_dir_structure",
+      "cycle": 1,
+      "description": "Scaffold the MAF-native 6-directory layout for a new skill package",
+      "inputs": ["agent_name"],
+      "outputs": ["directory_tree"],
+      "law": "MAF-NATIVE",
+      "template": null
+    },
+    {
+      "id": "mk_skill_md",
+      "cycle": 2,
+      "description": "Generate a complete SKILL.md using skill_template.md with {{token}} substitution",
+      "inputs": ["agent_name", "capability_class", "triangle_role", "tier", "kernel_plugin", "kernel_function"],
+      "outputs": ["SKILL.md"],
+      "law": "EC-SYS-001",
+      "template": "assets/skill_template.md"
+    },
+    {
+      "id": "mk_domain_json",
+      "cycle": 3,
+      "description": "Generate a complete domain_config.json for the new agent",
+      "inputs": ["agent_name", "capability_class", "actions_list"],
+      "outputs": ["domain_config.json"],
+      "law": "EC-SYS-001",
+      "template": "assets/domain_config_template.json"
+    },
+    {
+      "id": "mk_asset",
+      "cycle": "4+",
+      "description": "Write a complete asset file to assets/ directory",
+      "inputs": ["filename", "content"],
+      "outputs": ["assets/{filename}"],
+      "law": "EC-SYS-001",
+      "template": null
+    },
+    {
+      "id": "mk_script",
+      "cycle": "4+",
+      "description": "Write a complete executable script to scripts/ directory",
+      "inputs": ["filename", "content", "language"],
+      "outputs": ["scripts/{filename}"],
+      "law": "EC-SYS-001",
+      "template": null
+    },
+    {
+      "id": "mk_reference",
+      "cycle": "4+",
+      "description": "Write a complete reference document to references/ directory",
+      "inputs": ["filename", "content"],
+      "outputs": ["references/{filename}"],
+      "law": "EC-SYS-001",
+      "template": null
+    },
+    {
+      "id": "mk_registry_entry",
+      "cycle": "FINAL",
+      "description": "Append the newly provisioned agent to registry.yaml — TERMINATION ACTION",
+      "inputs": ["agent_name", "tier", "capability_class", "triangle_role", "description"],
+      "outputs": ["registry.yaml (appended)"],
+      "law": "EC-SYS-001",
+      "template": null
+    }
+  ],
+  "cycle_sequence": [
+    "mk_dir_structure",
+    "mk_skill_md",
+    "mk_domain_json",
+    "mk_asset (repeat as needed)",
+    "mk_script (repeat as needed)",
+    "mk_reference (repeat as needed)",
+    "mk_registry_entry"
+  ],
+  "termination": {
+    "condition": "All package files sealed + registry.yaml updated",
+    "signal": "DISPOSITION: COMPLETE",
+    "recipient": "orchestrator-agent"
+  }
+}

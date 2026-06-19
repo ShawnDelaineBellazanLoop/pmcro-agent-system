@@ -1,0 +1,35 @@
+{
+  "schema_version": "2.0",
+  "version": "1.0.0",
+  "agent": "playwright-agent",
+  "domain": "browser-automation",
+  "mcp_server": "playwright-mcp",
+  "mcp_port": "{{playwright_mcp_port}}",
+  "domain_map": {
+    "planner":   "Validate Navigation Plan",
+    "maker":     "Execute Browser Workflow",
+    "checker":   "Verify Extraction Fidelity",
+    "reflector": "Assess Automation Outcome",
+    "hil":       "Authorize TYPE1 Browser Action",
+    "closed":    "Extraction Record Sealed"
+  },
+  "type_classification": {
+    "TYPE2": ["browser_navigate", "browser_snapshot", "browser_screenshot", "browser_evaluate"],
+    "TYPE1": ["browser_click_submit", "browser_type_credential", "browser_form_post", "browser_create_account"]
+  },
+  "extraction_defaults": {
+    "wait_after_navigate_ms": 1500,
+    "max_snapshot_depth": 10,
+    "null_on_missing": true,
+    "screenshot_dir": ".pmcro/screenshots"
+  },
+  "earned_constraint_triggers": [
+    "browser_snapshot returned empty tree",
+    "navigation timeout exceeded",
+    "selector not found after 3 retries"
+  ],
+  "domain_laws": [
+    "EC-SYS-001", "EC-SYS-002", "GTDDD-MANDATE",
+    "MAAI-001", "TYPE2-GATE", "EXTRACT-001", "ARCH-003"
+  ]
+}

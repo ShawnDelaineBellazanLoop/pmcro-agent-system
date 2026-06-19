@@ -1,0 +1,33 @@
+{
+  "schema_version": "2.0",
+  "version": "1.0.0",
+  "agent": "jira-agent",
+  "domain": "project-management",
+  "mcp_server": "atlassian-rovo-mcp",
+  "mcp_url": "https://mcp.atlassian.com/v1/mcp",
+  "domain_map": {
+    "planner":   "Resolve Project Context",
+    "maker":     "Execute Jira Operation",
+    "checker":   "Verify Issue State",
+    "reflector": "Assess Operation Outcome",
+    "hil":       "Authorize TYPE1 Jira Mutation",
+    "closed":    "Jira Action Frame Sealed"
+  },
+  "type_classification": {
+    "TYPE2": ["searchJiraIssuesUsingJql", "getJiraIssue", "getVisibleJiraProjects", "getTransitionsForJiraIssue", "getJiraIssueTypeMetaWithFields"],
+    "TYPE1": ["createJiraIssue", "transitionJiraIssue", "editJiraIssue", "addCommentToJiraIssue", "createIssueLink"]
+  },
+  "resolution_required_before": {
+    "createJiraIssue": ["getVisibleJiraProjects"],
+    "transitionJiraIssue": ["getTransitionsForJiraIssue"]
+  },
+  "earned_constraint_triggers": [
+    "cloudId not found for site",
+    "transition ID not in available transitions",
+    "JQL syntax error from API"
+  ],
+  "domain_laws": [
+    "EC-SYS-001", "EC-SYS-003", "GTDDD-MANDATE",
+    "MAAI-001", "JIRA-001", "JIRA-002"
+  ]
+}

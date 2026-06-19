@@ -1,0 +1,52 @@
+{
+  "schema_version": "2.0",
+  "template_version": "2.0.0",
+  "description": "Declarative domain_config template for all PMCR-O agent skill packages.",
+  "tokens": {
+    "schema_version": "Fill with '2.0'",
+    "skill_version": "Fill with semver e.g. '5.0.0'",
+    "domain": "Fill with domain slug e.g. 'filesystem', 'meta-orchestration'",
+    "agent_type": "PHASE | SUBJECT | SUPPORT",
+    "maf_version": "e.g. '1.10.0'"
+  },
+  "template": {
+    "schema_version": "2.0",
+    "skill_version": "{{skill_version}}",
+    "domain": "{{domain}}",
+    "agent_type": "{{agent_type}}",
+    "maf_version": "{{maf_version}}",
+    "atomicity_rule": "Each cycle produces exactly one full file. Multi-file intents must be queued across separate cycles.",
+    "type1_actions": ["{{type1_action_1}}"],
+    "type2_actions": ["{{type2_action_1}}"],
+    "domain_actions": {
+      "{{action_name}}": {
+        "description": "{{action_description}}",
+        "type": "TYPE1 | TYPE2",
+        "inputs": {
+          "{{param}}": "{{param_description}}"
+        },
+        "outputs": "{{output_description}}",
+        "safety": {
+          "preconditions": ["{{precondition}}"],
+          "side_effects": ["{{side_effect}}"],
+          "rollback": "{{rollback_strategy}}"
+        }
+      }
+    },
+    "domain_scripts": {
+      "{{script_name}}": {
+        "path": "scripts/{{script_file}}",
+        "description": "{{script_description}}",
+        "type": "TYPE1 | TYPE2",
+        "parameters": {
+          "{{param}}": "{{param_description}}"
+        }
+      }
+    },
+    "mcp_surface": {
+      "tools": ["{{mcp_tool_name}}"],
+      "rate_limits": "{{rate_limit_description}}",
+      "auth": "{{auth_requirements}}"
+    }
+  }
+}

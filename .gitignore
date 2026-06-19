@@ -1,0 +1,21 @@
+# OS/System
+$RECYCLE.BIN/
+System Volume Information/
+Thumbs.db
+.DS_Store
+
+# Visual Studio / .NET
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.sln.docstates
+
+# PMCR-O Artifacts
+backups/
+logs/
+*.zip
+
+docs/_site/
+_site/

@@ -1,0 +1,24 @@
+- name: Phase Agents
+  expanded: true
+  items:
+    - name: Orchestrator Agent
+      href: orchestrator-agent.md
+    - name: Planner Agent
+      href: planner-agent.md
+    - name: Maker Agent
+      href: maker-agent.md
+    - name: Checker Agent
+      href: checker-agent.md
+    - name: Reflector Agent
+      href: reflector-agent.md
+
+- name: Subject Agents
+  items:
+    - name: Filesystem Agent
+      href: filesystem-agent.md
+    - name: Git Agent
+      href: git-agent.md
+    - name: Skill Maker Agent
+      href: skill-maker-agent.md
+    - name: DocFX Agent
+      href: docfx-agent.md

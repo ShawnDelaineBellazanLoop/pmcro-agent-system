@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "version": "4.6.0",
+  "domain": "terminal-arbitration",
+  "domain_map": {
+    "planner": "Verify Arbitration Logic",
+    "maker": "Execute Cycle Audit",
+    "checker": "Verify Final Disposition",
+    "reflector": "Issue Terminal Verdict",
+    "hil": "Escalate Terminal Failure",
+    "closed": "Cycle Record Archived"
+  },
+  "dispositions": {
+    "COMPLETE": "Cycle successful; output accepted.",
+    "RETRY": "Cycle failed but recoverable; increment loop.",
+    "HIL_ESCALATE": "Cycle failed or budget exhausted; freeze for human."
+  }
+}

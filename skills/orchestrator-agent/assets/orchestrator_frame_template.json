@@ -1,0 +1,15 @@
+{
+  "cycle_id": "CycleQ-{{timestamp}}",
+  "loop": 1,
+  "o_mode": "OUTPUT",
+  "cycle_policy": "ITERATIVE",
+  "subject_agent": null,
+  "skill_loaded": true,
+  "routed_to": "planner",
+  "reason": "ORC-004 — Initializing minimalist single-file cycle.",
+  "hil_required": false,
+  "trail_written": true,
+  "earned_constraints": [],
+  "notes": [ "Minimalist planning enabled: 1 file limit enforced." ],
+  "cycle_id_self": "CycleQ-ORCHSTR-{{hex8}}"
+}

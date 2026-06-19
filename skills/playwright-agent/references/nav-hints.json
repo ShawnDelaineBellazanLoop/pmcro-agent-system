@@ -1,0 +1,48 @@
+# Playwright Agent — Navigation Hints
+# Schema: 2.0 | Colony: {{colony_name}}
+# Load this file at the start of every Planner phase before generating navigation steps.
+
+## Format
+
+Each entry is keyed by hostname. All fields are optional — omit any field to fall back to defaults.
+
+```json
+{
+  "{{hostname}}": {
+    "wait_after_navigate_ms": 1500,
+    "search_selector": "{{css_or_aria_selector}}",
+    "result_selector": "{{css_or_aria_selector}}",
+    "submit_selector": "{{css_or_aria_selector}}",
+    "notes": "{{human_readable_note}}"
+  }
+}
+```
+
+## Active Hints
+
+```json
+{}
+```
+
+## How EarnedConstraints Add Entries
+
+When the Reflector issues a navigation EarnedConstraint, it appends to this file:
+
+```json
+{
+  "{{hostname}}": {
+    "wait_after_navigate_ms": 3000,
+    "search_selector": "{{corrected_selector}}",
+    "notes": "EC-NAV-{{id}}: Auto-added after {{failure_count}} consecutive failures on {{date}}"
+  }
+}
+```
+
+The Planner reads this file before generating navigation steps in every subsequent cycle.
+
+## Default Values (when no hint exists)
+
+- `wait_after_navigate_ms`: 1500
+- `search_selector`: auto-detect from accessibility tree (role=searchbox or input[type=search])
+- `result_selector`: auto-detect from accessibility tree
+- `submit_selector`: auto-detect (role=button name~=/search|submit|go/i)

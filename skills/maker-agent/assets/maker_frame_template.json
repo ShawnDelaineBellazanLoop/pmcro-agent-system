@@ -1,0 +1,19 @@
+{
+  "cycle_id": "CycleQ-{{timestamp}}",
+  "loop": 1,
+  "o_mode": "OUTPUT",
+  "maker_succeeded": true,
+  "step_results": [
+    {
+      "step": 1,
+      "domain_action": "action_key",
+      "status": "SUCCESS",
+      "result": "Full atomic output",
+      "artifact": "path/to/generated/file",
+      "error": null
+    }
+  ],
+  "hil_required": false,
+  "notes": [ "Execution verified against domain_config.atomicity_rule." ],
+  "cycle_id_self": "CycleQ-MAKER-{{hex8}}"
+}

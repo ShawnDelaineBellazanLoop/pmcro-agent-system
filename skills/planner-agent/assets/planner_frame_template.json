@@ -1,0 +1,21 @@
+{
+  "cycle_id": "CycleQ-{{timestamp}}",
+  "loop": 1,
+  "o_mode": "OUTPUT",
+  "subject_agent": null,
+  "planner_certified": true,
+  "steps": [
+    {
+      "step": 1,
+      "description": "Atomic action description",
+      "domain_action": "action_key",
+      "domain_action_type": "TYPE2",
+      "params": {},
+      "risk": "LOW",
+      "requires_hil": false
+    }
+  ],
+  "constraints_checked": [ "EC-SYS-001", "EC-SYS-002" ],
+  "notes": [ "Strategy optimized for single-file production." ],
+  "cycle_id_self": "CycleQ-PLANNER-{{hex8}}"
+}

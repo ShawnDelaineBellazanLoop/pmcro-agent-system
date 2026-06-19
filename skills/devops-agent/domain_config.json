@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0",
+  "version": "1.0.0",
+  "agent": "devops-agent",
+  "domain": "build-automation",
+  "mcp_server": "terminal-mcp",
+  "mcp_port": "{{terminal_mcp_port}}",
+  "domain_map": {
+    "planner":   "Plan Build Sequence",
+    "maker":     "Execute Terminal Command",
+    "checker":   "Verify Exit Code and Output",
+    "reflector": "Assess Build Outcome",
+    "hil":       "Authorize TYPE1 Deployment",
+    "closed":    "Build Frame Sealed"
+  },
+  "type_classification": {
+    "TYPE2": ["dotnet build", "dotnet test", "dotnet restore", "dotnet --version", "docker ps", "Invoke-WebRequest /health"],
+    "TYPE1": ["dotnet publish", "dotnet run --project apphost", "docker run", "docker push", "kubectl apply"]
+  },
+  "sdk_pin": {
+    "global_json_path": "{{solution_root}}/global.json",
+    "verify_before_build": true,
+    "mismatch_action": "HIL_ESCALATE"
+  },
+  "mcp_health_endpoints": {
+    "playwright-mcp": "http://localhost:{{playwright_mcp_port}}/health",
+    "filesystem-mcp": "http://localhost:{{filesystem_mcp_port}}/health",
+    "terminal-mcp": "http://localhost:{{terminal_mcp_port}}/health"
+  },
+  "build_defaults": {
+    "configuration": "Release",
+    "output_dir": ".pmcro/builds",
+    "trail_dir": ".pmcro/trails"
+  },
+  "earned_constraint_triggers": [
+    "exit_code != 0 on 2 consecutive builds",
+    "SDK version mismatch from global.json",
+    "MCP server not reachable before workflow"
+  ],
+  "domain_laws": [
+    "EC-SYS-001", "EC-SYS-003", "GTDDD-MANDATE",
+    "MAAI-001", "DEVOPS-001", "DEVOPS-002", "DEVOPS-003"
+  ]
+}

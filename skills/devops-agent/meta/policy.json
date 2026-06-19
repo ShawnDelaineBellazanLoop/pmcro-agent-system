@@ -1,0 +1,10 @@
+{
+  "policy_version": "1.0.0",
+  "agent": "devops-agent",
+  "type1_requires_hil": true,
+  "sdk_pin_required": true,
+  "mcp_health_preflight_required": true,
+  "exit_code_zero_required_for_success": true,
+  "aspire_first": true,
+  "hardcoded_paths_allowed": false
+}

@@ -1,0 +1,114 @@
+{
+  "agent": "docfx-agent",
+  "version": "1.0.0",
+  "capability_class": "DOCUMENTATION_AUTOMATION",
+  "maf": {
+    "tier": "SUBJECT",
+    "triangle_role": "EXECUTION",
+    "kernel_plugin": "DocFxKernel",
+    "kernel_function": "BuildDocumentationSite"
+  },
+  "validated_versions": {
+    "docfx_tool": "2.78.5",
+    "docfx_app_nuget": "2.78.5",
+    "microsoft_codeanalysis_workspaces_msbuild": "4.10.0",
+    "microsoft_codeanalysis_csharp_workspaces": "4.10.0",
+    "dotnet_sdk_minimum": "net8.0",
+    "dotnet_sdk_latest": "net9.0",
+    "nodejs_dev_only": "24.x",
+    "validated_on": "2026-06-19",
+    "source": "https://www.nuget.org/packages/Docfx.App/ + https://github.com/dotnet/docfx/releases"
+  },
+  "colony_laws": {
+    "EC-SYS-001": "Every output is a complete file — no stubs or TODOs",
+    "EC-SYS-002": "One file per PMCR-O cycle",
+    "GTDDD-MANDATE": "Use {{tokens}} for all company/project-specific values"
+  },
+  "actions": [
+    {
+      "id": "mk_scaffold",
+      "description": "Scaffold a complete DocFX project structure: directories, docfx.json, toc.yml, index.md, filter.yml, .gitignore",
+      "inputs": ["project_name", "solution_path", "output_path", "base_url"],
+      "outputs": ["docfx.json", "toc.yml", "index.md", "filterConfig.yml", ".gitignore"],
+      "reference": "references/docfx_json_reference.md",
+      "law": "EC-SYS-001"
+    },
+    {
+      "id": "mk_docfx_json",
+      "description": "Generate an enterprise-grade docfx.json with metadata, build, globalMetadata, fileMetadata, sitemap, and modern template",
+      "inputs": ["solution_path", "project_title", "base_url", "output_dir", "xref_urls"],
+      "outputs": ["docfx.json"],
+      "reference": "references/docfx_json_reference.md",
+      "law": "EC-SYS-001"
+    },
+    {
+      "id": "mk_cicd_pipeline",
+      "description": "Generate a production GitHub Actions or Azure Pipelines YAML for DocFX build + deploy (GitHub Pages or Azure Static Web Apps)",
+      "inputs": ["ci_platform", "deploy_target", "dotnet_version", "docfx_path", "pages_branch"],
+      "outputs": [".github/workflows/docs.yml OR azure-pipelines-docs.yml"],
+      "reference": "references/cicd_patterns.md",
+      "law": "EC-SYS-001"
+    },
+    {
+      "id": "mk_sdk_integration",
+      "description": "Generate .csproj and C# entry point using Docfx.App 2.78.5 programmatic API (DotnetApiCatalog + Docset.Build)",
+      "inputs": ["project_name", "target_framework", "docfx_json_path"],
+      "outputs": ["DocBuildHost.csproj", "Program.cs"],
+      "reference": "references/api_sdk.md",
+      "law": "EC-SYS-001"
+    },
+    {
+      "id": "mk_template",
+      "description": "Generate custom template overlay folder with main.css and main.js for corporate branding on top of modern template",
+      "inputs": ["template_name", "primary_color", "font_family", "logo_path"],
+      "outputs": ["my-template/public/main.css", "my-template/public/main.js"],
+      "reference": "references/templates.md",
+      "law": "EC-SYS-001"
+    },
+    {
+      "id": "mk_filter_yml",
+      "description": "Generate filterConfig.yml to control API visibility: include/exclude namespaces, types, members by pattern",
+      "inputs": ["include_patterns", "exclude_patterns", "include_privates"],
+      "outputs": ["filterConfig.yml"],
+      "reference": "references/filters.md",
+      "law": "EC-SYS-001"
+    },
+    {
+      "id": "mk_monorepo_config",
+      "description": "Generate docfx.json with multiple metadata.src entries for monorepo / multi-solution documentation",
+      "inputs": ["solution_paths", "project_title", "base_url"],
+      "outputs": ["docfx.json"],
+      "reference": "references/docfx_json_reference.md",
+      "law": "EC-SYS-001"
+    },
+    {
+      "id": "mk_xref_config",
+      "description": "Add xref maps to docfx.json for cross-repository or cross-package API linking",
+      "inputs": ["xref_urls"],
+      "outputs": ["docfx.json (xref section)"],
+      "reference": "references/docfx_json_reference.md",
+      "law": "EC-SYS-001"
+    },
+    {
+      "id": "mk_pdf_config",
+      "description": "Add PDF generation section to docfx.json with header/footer templates",
+      "inputs": ["pdf_output_path", "base_url", "header_template_path", "footer_template_path"],
+      "outputs": ["docfx.json (pdf section)"],
+      "reference": "references/docfx_json_reference.md",
+      "law": "EC-SYS-001"
+    },
+    {
+      "id": "mk_dotnet_tool_manifest",
+      "description": "Generate .config/dotnet-tools.json pinning docfx 2.78.5 for reproducible installs across teams",
+      "inputs": [],
+      "outputs": [".config/dotnet-tools.json"],
+      "reference": "references/versions.md",
+      "law": "EC-SYS-001"
+    }
+  ],
+  "termination": {
+    "condition": "Requested file(s) written to S:\\ and verified on disk",
+    "signal": "DISPOSITION: COMPLETE",
+    "recipient": "orchestrator-agent"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "version": "4.6.0",
+  "domain": "validation-gate",
+  "domain_map": {
+    "planner": "Verify Validation Logic",
+    "maker": "Execute Integrity Checks",
+    "checker": "Verify Result Authenticity",
+    "reflector": "Assess Validation Success",
+    "hil": "Escalate Discrepancy to Human",
+    "closed": "Validation Report Sealed"
+  },
+  "check_rules": [
+    "CHECK-001: domain_action existence",
+    "CHECK-002: step correspondence",
+    "CHECK-003: atomicity verification",
+    "CHECK-004: trail confirmation"
+  ]
+}

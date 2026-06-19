@@ -1,0 +1,55 @@
+{
+  "schema_version": "2.0",
+  "skill_version": "5.0.0",
+  "domain": "meta-orchestration",
+  "agent_type": "PHASE",
+  "maf_version": "1.10.0",
+  "atomicity_rule": "Each cycle produces exactly one full file. Multi-file intents must be queued across separate cycles.",
+  "type1_actions": ["dispatch_type1_action", "halt_trail", "write_earned_constraint"],
+  "type2_actions": ["open_trail", "close_trail", "resolve_subject_agent", "read_registry", "read_constraints", "write_trail_meta"],
+  "domain_actions": {
+    "open_trail": {
+      "description": "Opens a new PMCR-O trail record in .pmcro/trails/<trail_id>/meta.json.",
+      "type": "TYPE2",
+      "inputs": { "intent": "Raw user intent string.", "subject_agent": "Resolved subject agent key from registry.yaml." },
+      "outputs": "trail_id (UUID), trail meta.json written to disk.",
+      "safety": { "preconditions": ["registry.yaml must be readable", "subject_agent must exist in registry"], "side_effects": ["Creates .pmcro/trails/<trail_id>/ directory"], "rollback": "Delete trail directory on failure." }
+    },
+    "close_trail": {
+      "description": "Seals the trail with a final disposition and updates .pmcro/trails/index.json.",
+      "type": "TYPE2",
+      "inputs": { "trail_id": "Active trail UUID.", "disposition": "COMPLETE | HALT | HIL_ESCALATE" },
+      "outputs": "Updated meta.json with closed_at timestamp and final disposition.",
+      "safety": { "preconditions": ["All phase frames must exist on disk"], "side_effects": ["Appends entry to .pmcro/trails/index.json"], "rollback": "N/A — dispositions are immutable." }
+    },
+    "resolve_subject_agent": {
+      "description": "Reads registry.yaml and returns the skill path for the best-matching subject agent.",
+      "type": "TYPE2",
+      "inputs": { "intent": "Normalized intent string." },
+      "outputs": "subject_agent key and SKILL.md path.",
+      "safety": { "preconditions": ["registry.yaml must be present at S:/registry.yaml"], "side_effects": [], "rollback": "Return error — never guess an agent name." }
+    },
+    "dispatch_type1_action": {
+      "description": "Dispatches a TYPE1 (state-mutating) action after verifying HIL token.",
+      "type": "TYPE1",
+      "inputs": { "action": "domain_action name.", "hil_token": "MAAI-001 authorization token.", "payload": "Action parameters." },
+      "outputs": "Dispatch confirmation or HALT if token is missing.",
+      "safety": { "preconditions": ["hil_token must be present and valid", "action must be listed in type1_actions of subject domain_config"], "side_effects": ["Triggers physical file write or API mutation"], "rollback": "Halt and write EarnedConstraint." }
+    },
+    "write_earned_constraint": {
+      "description": "Writes an EarnedConstraint JSON to .pmcro/constraints/earned/ on HALT.",
+      "type": "TYPE1",
+      "inputs": { "trail_id": "Trail UUID.", "failure_reason": "Root cause of HALT.", "constraint_rule": "Rule to prevent recurrence." },
+      "outputs": ".pmcro/constraints/earned/<trail_id>.constraint.json",
+      "safety": { "preconditions": ["Trail must be in HALT state"], "side_effects": ["Creates constraint file consumed by Planner on next cycle"], "rollback": "N/A." }
+    }
+  },
+  "routing_targets": {
+    "planner": "Dispatch to Strategic Architect (planner-agent)",
+    "maker": "Dispatch to Execution Engine (maker-agent)",
+    "checker": "Dispatch to Validation Gate (checker-agent)",
+    "reflector": "Dispatch to Terminal Arbiter (reflector-agent)",
+    "hil": "Escalate to Human-in-the-Loop",
+    "closed": "Seal Cycle Trail — write COMPLETE disposition"
+  }
+}

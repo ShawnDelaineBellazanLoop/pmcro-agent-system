@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "version": "4.6.0",
+  "domain": "execution-engine",
+  "domain_map": {
+    "planner": "Verify Strategic Dispatch",
+    "maker": "Execute Domain Actions",
+    "checker": "Record Execution Result",
+    "reflector": "Certify Action Success",
+    "hil": "Await Authorization Token",
+    "closed": "Execution Session Sealed"
+  },
+  "safety_defaults": {
+    "stop_on_first_error": true,
+    "require_trail_seal": true
+  }
+}

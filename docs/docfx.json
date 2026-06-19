@@ -1,0 +1,54 @@
+{
+  "build": {
+    "content": [
+      {
+        "files": [ "**/*.yml", "**/*.md" ],
+        "exclude": [
+          "_site/**",
+          "obj/**",
+          "api/**",
+          ".config/**",
+          "filterConfig.yml",
+          "my-template/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [ "media/**" ]
+      }
+    ],
+    "output": "_site",
+
+    "globalMetadata": {
+      "_appTitle":            "Tooensure Colony — PMCR-O Agent System",
+      "_appFooter":           "&copy; 2026 Tooensure LLC &mdash; PMCR-O Cognitive Loop Colony",
+      "_appLogoPath":         "media/colony-logo.svg",
+      "_enableSearch":        true,
+      "_disableContribution": false,
+      "_gitRepoUrl":          "https://github.com/tooensure/pmcro-colony",
+      "_gitUrlPattern":       "auto",
+      "colony_version":       "4.6.0",
+      "maf_version":          "1.7.0",
+      "framework":            ".NET 9 / MAF 1.7.0 / MCP / A2A"
+    },
+
+    "fileMetadata": {
+      "_disableContribution": {
+        "articles/registry.md": true
+      }
+    },
+
+    "markdownEngineProperties": {
+      "markdigExtensions": [
+        "Abbreviations",
+        "Footnotes",
+        "DefinitionLists"
+      ]
+    },
+
+    "template": [ "default", "modern", "my-template" ],
+
+    "postProcessors": [ "ExtractSearchIndex" ]
+  }
+}

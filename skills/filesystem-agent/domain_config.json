@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "version": "4.6.3",
+  "domain": "filesystem",
+  "domain_actions": {
+    "fs_read_file": "Read text of a single file.",
+    "fs_write_file": "Atomic write of a full file.",
+    "fs_list_directory": "List contents of a directory.",
+    "fs_delete": "Safe deletion of a file or directory, with optional dry-run, glob pattern filtering, and backup-before-delete."
+  },
+  "domain_scripts": {
+    "fs_zip": {
+      "path": "scripts/archive_util.py",
+      "description": "Compresses a target path into a standalone ZIP archive.",
+      "type": "TYPE1",
+      "parameters": {
+        "source": "Path to the directory or file to compress.",
+        "output": "The full destination path including the .zip extension."
+      }
+    },
+    "fs_delete": {
+      "path": "scripts/delete_util.py",
+      "description": "Deletes a file or directory. Supports dry-run preview, glob pattern filtering within a directory, and optional backup-before-delete.",
+      "type": "TYPE1",
+      "parameters": {
+        "target": "Path to the file or directory to delete.",
+        "pattern": "(Optional) Glob pattern (e.g. '*.log') to filter files inside target directory.",
+        "backup_dir": "(Optional) Path to copy the target into before deleting.",
+        "dry_run": "(Optional flag) Preview deletions without making changes."
+      }
+    },
+    "source_dump": {
+      "path": "scripts/source_dump.py",
+      "description": "Aggregates vault source for auditing.",
+      "type": "TYPE2"
+    }
+  },
+  "type1_actions": ["fs_write_file", "fs_zip", "fs_delete"],
+  "type2_actions": ["fs_read_file", "fs_list_directory", "source_dump"]
+}

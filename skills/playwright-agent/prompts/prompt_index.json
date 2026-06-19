@@ -1,0 +1,14 @@
+{
+  "schema_version": "2.0",
+  "agent": "playwright-agent",
+  "prompts": {
+    "system":    "prompts/system.prompt.md",
+    "developer": "prompts/developer.prompt.md"
+  },
+  "o_modes": {
+    "OPTIMIZE":    "Use TYPE2 tools only. Maximize extraction coverage per page load.",
+    "OUTPUT":      "Emit complete extraction_frame_json. Every field from schema required or explicitly null.",
+    "ORCHESTRATE": "Route batch jobs. Chunk large address lists. Write per-property results immediately after extraction.",
+    "TOPOLOGY":    "Map MCP tool availability. Confirm playwright-mcp is healthy before first browser_navigate."
+  }
+}

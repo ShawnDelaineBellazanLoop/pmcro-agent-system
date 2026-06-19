@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "version": "4.6.3",
+  "domain": "git",
+  "domain_actions": {
+    "git_status": "Show working tree status (non-mutating).",
+    "git_log": "Show commit history (non-mutating).",
+    "git_add": "Stage files for commit.",
+    "git_commit": "Create a local commit (TYPE1).",
+    "git_push": "Push changes to remote (TYPE1).",
+    "git_pull": "Pull changes from remote."
+  },
+  "domain_scripts": {
+    "git_op": {
+      "path": "scripts/git_util.py",
+      "description": "Executes location-agnostic git operations. Supports automated sync (stage-commit-pull-push) or inspection.",
+      "type": "DYNAMIC_UTIL",
+      "parameters": {
+        "repo": "The full path to the git repository on the S: drive.",
+        "action": "The command to run: [status | log | sync]",
+        "message": "Required if action is 'sync'. The commit message for the cycle."
+      }
+    }
+  },
+  "type1_actions": [
+    "git_commit",
+    "git_push",
+    "git_op"
+  ],
+  "type2_actions": [
+    "git_status",
+    "git_log",
+    "git_add",
+    "git_pull"
+  ],
+  "atomicity_rule": "Dynamic git operations must result in a consistent repository state. The 'sync' action is atomic: failure at any stage (commit, pull, push) must result in a full stop and HIL escalation to prevent head-detachment or merge conflicts."
+}

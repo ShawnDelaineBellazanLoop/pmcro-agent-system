@@ -1,0 +1,9 @@
+{
+  "policy_version": "1.0.0",
+  "agent": "jira-agent",
+  "type1_requires_hil": true,
+  "resolve_before_act": true,
+  "bulk_hil_single_token": true,
+  "jql_injection_allowed": false,
+  "hardcoded_ids_allowed": false
+}

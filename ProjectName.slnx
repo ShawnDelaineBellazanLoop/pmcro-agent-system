@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/ProjectName.AppHost/ProjectName.AppHost.csproj" Id="483ec243-390d-4408-87e8-0b03226add11" />
+  <Project Path="src/ProjectName.OrchestratorApi/ProjectName.OrchestratorApi.csproj" Id="25ecf523-24d7-4f7e-a5f0-f71e9c2288a9" />
+  <Project Path="src/ProjectName.ServiceDefaults/ProjectName.ServiceDefaults.csproj" Id="c25d0cd9-92b7-4570-884f-1653be3c7bb0" />
+  <Project Path="src/services/ProjectName.OrchestratorService/ProjectName.OrchestratorService.csproj" Id="538229cd-c707-4fd6-a464-57094a25c76f" />
+</Solution>

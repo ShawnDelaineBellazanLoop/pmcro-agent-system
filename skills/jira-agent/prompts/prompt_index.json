@@ -1,0 +1,8 @@
+{
+  "schema_version": "2.0",
+  "agent": "jira-agent",
+  "prompts": [
+    { "id": "system",    "path": "prompts/system.prompt.md",    "role": "system",    "load": "startup" },
+    { "id": "developer", "path": "prompts/developer.prompt.md", "role": "developer", "load": "startup" }
+  ]
+}

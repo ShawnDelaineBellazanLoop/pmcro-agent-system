@@ -1,0 +1,9 @@
+{
+  "policy_version": "1.0.0",
+  "agent": "playwright-agent",
+  "type1_requires_hil": true,
+  "hallucination_policy": "NULL_EMIT",
+  "screenshot_retention_cycles": 10,
+  "max_batch_urls": 50,
+  "mcp_only": true
+}
